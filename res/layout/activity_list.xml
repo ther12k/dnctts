@@ -1,0 +1,32 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ListActivity" >
+	<LinearLayout 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:orientation="vertical">
+	    
+	    <TextView
+	        android:id="@+id/tts1"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textSize="24sp"
+	        android:text="TTS 1"
+	        android:clickable="true" />
+	    <LinearLayout 
+	        android:layout_height="20dp"
+	        android:layout_width="match_parent"></LinearLayout>
+	    <TextView
+	        android:id="@+id/tts2"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textSize="24sp"
+	        android:text="TTS 2"
+	        android:clickable="true" />
+	</LinearLayout>
+
+</RelativeLayout>

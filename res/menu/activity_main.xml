@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/menu_horizontal"  
+        android:showAsAction="ifRoom|withText"
+        android:title="@string/menu_horizontal"/>
+    <item
+        android:id="@+id/menu_vertical"
+        android:showAsAction="ifRoom|withText"
+        android:title="@string/menu_vertical"/>
+
+</menu>

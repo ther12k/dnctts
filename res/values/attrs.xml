@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="BoxWidget">
+        <attr name="number" format="string"/>
+        <attr name="number_visible" format="boolean"/>
+        <attr name="word" format="string"/>
+        <attr name="word_visible" format="boolean"/>
+    </declare-styleable>
+</resources>
