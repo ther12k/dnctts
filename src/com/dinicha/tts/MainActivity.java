@@ -31,7 +31,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.dinicha.tts.entities.Box;
-
+//
 public class MainActivity extends Activity {
 	private final int QUESTIONS=111;
 	private int tileWH=50;

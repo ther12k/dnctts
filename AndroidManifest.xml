@@ -36,7 +36,7 @@
         <activity
             android:name="com.dinicha.tts.QuestionsListActivity"
             android:label="@string/title_activity_main"
-            android:windowSoftInputMode="adjustResize|stateVisible" >
+            android:windowSoftInputMode="adjustResize|stateVisible|orientation" >
         </activity>
         <activity
             android:name="com.dinicha.tts.HelpActivity"
