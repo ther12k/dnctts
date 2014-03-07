@@ -13,3 +13,6 @@ public class Box {
 	public char wordEntered=' ';//word
 	public LinearLayout view=null;
 }
+
+
+

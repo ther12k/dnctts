@@ -485,7 +485,7 @@ public class MainActivity extends Activity {
 	    //alert.setTitle(String.valueOf(keyCode));
 	    //alert.show();
 		char c = (char)event.getUnicodeChar();
-		/*
+		
 		if(keyCode==KeyEvent.KEYCODE_BACK){
 			if(boxStatus==Box.HCHECKED){
 				if(selCol>startCell){
@@ -498,8 +498,7 @@ public class MainActivity extends Activity {
 					highlightBox(selRow,selCol);
 				}
 			}
-		}else 
-		*/
+		}else
 		if(Character.isLetter(c)){
 			setWordEntered(box[selRow][selCol],Character.toUpperCase(c));
 			if(boxStatus==Box.HCHECKED){

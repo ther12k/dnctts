@@ -50,7 +50,7 @@
 			   	    android:textColor="#ff0000"
 			   	    android:textSize="10pt" 
 					android:padding="5dp"
-					android:visibility="invisible"/>
+					android:visibility="visible"/>
 			    </RelativeLayout>
 	    </LinearLayout>
 	    </LinearLayout>
