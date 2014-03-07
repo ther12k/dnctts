@@ -185,7 +185,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.dinicha.tts:number
+          @attr name android:number
         */
         public static final int BoxWidget_number = 0;
         /**
@@ -199,7 +199,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.dinicha.tts:number_visible
+          @attr name android:number_visible
         */
         public static final int BoxWidget_number_visible = 1;
         /**
@@ -213,7 +213,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.dinicha.tts:word
+          @attr name android:word
         */
         public static final int BoxWidget_word = 2;
         /**
@@ -227,7 +227,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.dinicha.tts:word_visible
+          @attr name android:word_visible
         */
         public static final int BoxWidget_word_visible = 3;
     };
