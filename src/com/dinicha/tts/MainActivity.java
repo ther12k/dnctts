@@ -59,6 +59,7 @@ public class MainActivity extends Activity {
 	private ScrollView questionScroll;
 	private ScrollView scrollDown;
 	private HorizontalScrollView scrollRight;
+	private int wrongWordCount = 0;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -146,10 +147,24 @@ public class MainActivity extends Activity {
 	
 	private void checkWord(Box box,boolean correct){
 		TextView wordView = ((TextView)(box.view.findViewById(R.id.guess)));
-		if(correct)
+		if(correct){
+			wrongWordCount--;
 			wordView.setTextColor(Color.BLACK);
-		else
+		}else{
 			wordView.setTextColor(Color.RED);
+			wrongWordCount++;
+		}
+		if(wrongWordCount==0){
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			Intent i = new Intent(MainActivity.this,GameOverActivity.class);
+			startActivity(i);
+			finish();
+		}
 	}
 	
 	private void setWordEntered(Box box,char c){
@@ -440,6 +455,7 @@ public class MainActivity extends Activity {
 					if(c=='#') {
 						pointer.blank = true;
 					}else{
+						wrongWordCount++;
 						pointer.view.findViewById(R.id.blankImage).setVisibility(View.GONE);
 						pointer.view.findViewById(R.id.word_color).setVisibility(View.VISIBLE);
 						pointer.wordBase = c;
