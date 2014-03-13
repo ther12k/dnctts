@@ -45,6 +45,11 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_help" >
         </activity>
+        <activity
+            android:name="com.dinicha.tts.GameOverActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_help" >
+        </activity>
     </application>
 
 </manifest>
