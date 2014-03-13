@@ -1,5 +1,3 @@
-MENDATAR
-
 Laut (Inggris)
 Peribahasa Sindiran
 Condong;Tidak datar
@@ -10,17 +8,14 @@ Pengetahuan/Kepandaian
 Agak banyak
 Lorong bebatuan yg gelap
 Saya
-
-
-MENURUN
-
+#
 Mendengarkan baik-baik apa yang diucapkan orang
 Raja ... (Nama Tempat)
 Terletak lebih tinggi
 Hewan yang hidup di gurun pasir
 Yang
-Hormon kelenjar pankreas untuk mengatur kadar gula
 Besar;Mulia;Terhormat
+Hormon kelenjar pankreas untuk mengatur kadar gula
 Panjang (Inggris)
 Belas Kasihan
 Atur

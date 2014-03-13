@@ -1,4 +1,4 @@
-10 15
+11 15
 
 SEA#####PANTUN#
 I#MIRING#T##N##
@@ -10,3 +10,4 @@ K#TANK########U
 #B##LUMAYAN#D##
 #A##I##T##GOA##
 ###ANA#A###R###
+###############

@@ -1,4 +1,4 @@
-10 15
+11 15
 
 KKN###ANTRI####
 A##AJAL#E#KAPUR
@@ -9,4 +9,5 @@ N#TUGAS####L##E
 ##M##R#PISPOT#S
 SPELL###R##B##A
 I#######I##E##H
-TOL#####T######
+T#######T######
+###############
