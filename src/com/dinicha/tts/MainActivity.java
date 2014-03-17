@@ -148,11 +148,9 @@ public class MainActivity extends Activity {
 	private void checkWord(Box box,boolean correct){
 		TextView wordView = ((TextView)(box.view.findViewById(R.id.guess)));
 		if(correct){
-			wrongWordCount--;
 			wordView.setTextColor(Color.BLACK);
 		}else{
 			wordView.setTextColor(Color.RED);
-			wrongWordCount++;
 		}
 		if(wrongWordCount==0){
 			try {
@@ -168,6 +166,10 @@ public class MainActivity extends Activity {
 	}
 	
 	private void setWordEntered(Box box,char c){
+		if(box.wordEntered!=c){
+			if(box.wordBase==box.wordEntered)//correct
+				wrongWordCount--;
+		}
 		box.wordEntered = c;
 		TextView wordView = ((TextView)(box.view.findViewById(R.id.guess)));
 		wordView.setVisibility(View.VISIBLE);
