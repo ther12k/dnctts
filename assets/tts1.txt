@@ -1,11 +1,11 @@
 11 15
 
-KKN###ANTRI####
-A##AJAL#E#KAPUR
-N##S##A#K#L####
+RAIB##ANTRI####
+###AJAL#E#KAPUR
+###S##A#K#L####
 TARI#A##A#A####
-I#I##K##DENGKUR
-N#TUGAS####L##E
+##I##K##DENGKUR
+##TUGAS####L##E
 ##M##R#PISPOT#S
 SPELL###R##B##A
 I#######I##E##H
