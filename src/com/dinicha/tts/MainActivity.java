@@ -336,7 +336,7 @@ public class MainActivity extends Activity {
 			i++;
 			changed = true;
 		}
-		endCell = i;
+		endCell = i-1;
 		if(changed) {
 			setVMark(box[start][col]);
 			return Box.VCHECKED;
