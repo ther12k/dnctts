@@ -11,7 +11,7 @@ public class TTSListActivity extends ListActivity  {
 
 	public void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
-	    String[] values = new String[] { "TTS1","TTS2","TTS3","TTS4","TTS5"};
+	    String[] values = new String[] { "TTS1","TTS2","TTS3","TTS4","TTS5","TTS6"};
 	    ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 	        android.R.layout.simple_list_item_1, values);
 	    setListAdapter(adapter);

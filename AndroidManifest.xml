@@ -26,7 +26,7 @@
         </activity>
         <activity
             android:name="com.dinicha.tts.TTSListActivity"
-            android:label="@string/title_activity_test" >
+            android:label="@string/title_activity_list" >
         </activity>
         <activity
             android:name="com.dinicha.tts.MainActivity"
