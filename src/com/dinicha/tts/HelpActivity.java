@@ -3,11 +3,14 @@ package com.dinicha.tts;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.WindowManager;
 
 public class HelpActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		getWindow().setSoftInputMode(
+			      WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_help);
 	}

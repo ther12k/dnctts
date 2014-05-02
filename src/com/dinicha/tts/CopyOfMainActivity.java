@@ -32,7 +32,7 @@ import android.widget.TextView;
 
 import com.dinicha.tts.entities.Box;
 //
-public class MainActivity extends Activity {
+public class CopyOfMainActivity extends Activity {
 	private final int QUESTIONS=111;
 	private int tileWH=50;
 	private int tilePadding=1;
@@ -90,14 +90,14 @@ public class MainActivity extends Activity {
 		Intent i;
 		switch (item.getItemId()) {
 			case R.id.menu_horizontal:
-				i = new Intent(MainActivity.this,QuestionsListActivity.class);
+				i = new Intent(CopyOfMainActivity.this,QuestionsListActivity.class);
 				i.putExtra("mendatar",true);
 				i.putStringArrayListExtra("questions",horizontalQ);
 				i.putIntegerArrayListExtra("number",hNumber);
 				startActivityForResult(i,QUESTIONS);
 				return true;
 			case R.id.menu_vertical:
-				i = new Intent(MainActivity.this,QuestionsListActivity.class);
+				i = new Intent(CopyOfMainActivity.this,QuestionsListActivity.class);
 				i.putExtra("mendatar",false);
 				i.putStringArrayListExtra("questions",verticalQ);
 				i.putIntegerArrayListExtra("number",vNumber);
@@ -155,24 +155,7 @@ public class MainActivity extends Activity {
 	}
 	
 	private void setWordEntered(Box box,char c){
-		if(box.wordEntered!=c){
-			Log.d("Word Count ",String.valueOf(wrongWordCount));
-			box.wordEntered = c;
-			if(box.wordBase==box.wordEntered)//correct
-				wrongWordCount--;
-
-			if(wrongWordCount==0){
-				try {
-					Thread.sleep(500);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				Intent i = new Intent(MainActivity.this,GameOverActivity.class);
-				startActivity(i);
-				finish();
-			}
-		}
+		box.wordEntered = c;
 		TextView wordView = ((TextView)(box.view.findViewById(R.id.guess)));
 		wordView.setVisibility(View.VISIBLE);
 		wordView.setText(""+c);
@@ -238,7 +221,24 @@ public class MainActivity extends Activity {
 		for(int col=startCell;col<=endCell;col++){
 			checkWord(box[selRow][col],correct);
 		}
+		Log.d("wrongWordCount", String.valueOf(wrongWordCount));
+		if(correct){
+			wrongWordCount--;
+
+			if(wrongWordCount==0){
+				try {
+					Thread.sleep(200);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				Intent i = new Intent(CopyOfMainActivity.this,GameOverActivity.class);
+				startActivity(i);
+				finish();
+			}
+		}
 	}
+	
 	private void checkVword(){
 		boolean correct = true;
 		for(int row=startCell;row<=endCell;row++){
@@ -250,6 +250,21 @@ public class MainActivity extends Activity {
 		}
 		for(int row=startCell;row<=endCell;row++){
 			checkWord(box[row][selCol],correct);
+		}
+		Log.d("wrongWordCount", String.valueOf(wrongWordCount));
+		if(correct){
+			wrongWordCount--;
+			if(wrongWordCount==0){
+				try {
+					Thread.sleep(200);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				Intent i = new Intent(CopyOfMainActivity.this,GameOverActivity.class);
+				startActivity(i);
+				finish();
+			}
 		}
 	}
 	
@@ -405,10 +420,13 @@ public class MainActivity extends Activity {
 					line = bufferedReader.readLine();
 					line = line.trim();
 				}
-				if(mendatar)
+				if(mendatar){
 					horizontalQ.add(line);
-				else
+					wrongWordCount++;
+				}else{
 					verticalQ.add(line);
+					wrongWordCount++;
+				}
 			}
 	    } catch (IOException e1) {
 	        Log.d("ERROR DETECTED", "ERROR WHILE TRYING TO OPEN FILE");
@@ -461,7 +479,6 @@ public class MainActivity extends Activity {
 					if(c=='#') {
 						pointer.blank = true;
 					}else{
-						wrongWordCount++;
 						pointer.view.findViewById(R.id.blankImage).setVisibility(View.GONE);
 						pointer.view.findViewById(R.id.word_color).setVisibility(View.VISIBLE);
 						pointer.wordBase = c;

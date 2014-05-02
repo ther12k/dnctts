@@ -5,19 +5,23 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.view.WindowManager;
 
 public class GameOverActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		getWindow().setSoftInputMode(
+			      WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game_over);
 		findViewById(R.id.btnMain).setOnClickListener(
 				new View.OnClickListener() {
 					@Override
 					public void onClick(View view) {
-						Intent intent = new Intent(GameOverActivity.this,TTSListActivity.class);
+						Intent intent = new Intent(GameOverActivity.this,SplashActivity.class);
 						startActivity(intent);
+						finish();
 					}
 				});
 		findViewById(R.id.btnExit).setOnClickListener(

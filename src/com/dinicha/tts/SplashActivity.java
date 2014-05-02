@@ -5,11 +5,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.view.WindowManager;
 
 public class SplashActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		getWindow().setSoftInputMode(
+			      WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_splash);
 		findViewById(R.id.btnMain).setOnClickListener(
@@ -18,6 +21,7 @@ public class SplashActivity extends Activity {
 					public void onClick(View view) {
 						Intent intent = new Intent(SplashActivity.this,TTSListActivity.class);
 						startActivity(intent);
+						finish();
 					}
 				});
 		findViewById(R.id.btnHelp).setOnClickListener(
@@ -26,6 +30,7 @@ public class SplashActivity extends Activity {
 					public void onClick(View view) {
 						Intent intent = new Intent(SplashActivity.this,HelpActivity.class);
 						startActivity(intent);
+						finish();
 					}
 				});
 		findViewById(R.id.btnExit).setOnClickListener(
