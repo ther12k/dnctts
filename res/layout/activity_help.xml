@@ -1,4 +1,5 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -6,19 +7,44 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
     tools:context=".HelpActivity" >
-
-    <TextView
+ 	<TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Teka-teki Silang (TTS) adalah permainan kata sederhana yang diperkenalkan oleh Arthur Waynne pada tahun 1913.
-Ada banyak sekali manfaat dari permainan TTS, diantaranya -Meningkatkan kinerja fungsi otak
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="#0000ff"
+        android:text="Teka-teki Silang (TTS) : Sepintas Cerita"></TextView>
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Teka-teki Silang (TTS) adalah permainan kata sederhana yang diperkenalkan oleh Arthur Waynne pada tahun 1913."></TextView>
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ada banyak sekali manfaat dari permainan TTS, diantaranya -Meningkatkan kinerja fungsi otak"></TextView>
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="
         -Mencegah kepikunan dini
         -Menurunkan darah tinggi
         -Menghilangkan stress
         -Menambah wawasan
-        -Dan banyak lagi
-        Teka-Teki Silang ini dibuat untuk menyelesaikan study sarjana saya.
+        -Dan banyak lagi"></TextView>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="
+        Teka-Teki Silang ini dibuat untuk menyelesaikan study sarjana saya."></TextView>
+     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:text="
         Contact Person : dinicha.kalbe@gmail.com"></TextView>
 
-</RelativeLayout>
+</LinearLayout>
