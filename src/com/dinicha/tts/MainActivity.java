@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -60,6 +61,8 @@ public class MainActivity extends Activity {
 	private ScrollView scrollDown;
 	private HorizontalScrollView scrollRight;
 	private int wrongWordCount = 0;
+	private long endTimer = 600;
+    TextView timerTextView;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -75,8 +78,28 @@ public class MainActivity extends Activity {
 		scrollDown = (ScrollView) findViewById(R.id.scrollDown);
 		scrollRight = (HorizontalScrollView) findViewById(R.id.scrollRight);
 		alert = new AlertDialog.Builder(this);
-		
+        timerTextView = (TextView) findViewById(R.id.timerView);
+        timerHandler.postDelayed(timerRunnable, 0);
 	}
+	
+	Handler timerHandler = new Handler();
+    Runnable timerRunnable = new Runnable() {
+
+        @Override
+        public void run() {
+        	if(endTimer>0){
+	        	endTimer--;
+	            int seconds = (int)(endTimer % 60);
+	            int minutes = (int)(endTimer / 60);
+	
+	            timerTextView.setText(String.format("%d:%02d", minutes, seconds));
+	
+	            timerHandler.postDelayed(this, 1000);
+        	}else{
+        		checkAll();
+        	}
+        }
+    };
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -89,6 +112,11 @@ public class MainActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		Intent i;
 		switch (item.getItemId()) {
+			case R.id.menu_back:
+				i = new Intent(MainActivity.this,TTSListActivity.class);
+				startActivity(i);
+				finish();
+				return true;
 			case R.id.menu_horizontal:
 				i = new Intent(MainActivity.this,QuestionsListActivity.class);
 				i.putExtra("mendatar",true);
@@ -169,6 +197,10 @@ public class MainActivity extends Activity {
 					e.printStackTrace();
 				}
 				Intent i = new Intent(MainActivity.this,GameOverActivity.class);
+				i.putExtra("timeout", false);
+				i.putExtra("timeleft", endTimer);
+				i.putExtra("v", vNumber.size());
+				i.putExtra("h", hNumber.size());
 				startActivity(i);
 				finish();
 			}
@@ -226,31 +258,62 @@ public class MainActivity extends Activity {
 		box.status = Box.VCHECKED;
 	}
 	
-	private void checkHword(){
-		boolean correct = true;
-		for(int col=startCell;col<=endCell;col++){
+	private int checkHword(){
+		for(int col=startCell;box[selRow][col].blank;col++){
 			Box pointer = box[selRow][col];
 			if(pointer.wordBase!=pointer.wordEntered){
-				correct = false;
-				break;
+				return 0;
 			}
 		}
-		for(int col=startCell;col<=endCell;col++){
-			checkWord(box[selRow][col],correct);
-		}
+		return 1;
 	}
-	private void checkVword(){
-		boolean correct = true;
-		for(int row=startCell;row<=endCell;row++){
+	
+	private int checkVword(){
+		for(int row=startCell;box[row][selCol].blank;row++){
 			Box pointer = box[row][selCol];
 			if(pointer.wordBase!=pointer.wordEntered){
-				correct = false;
-				break;
+				return 0;
 			}
 		}
-		for(int row=startCell;row<=endCell;row++){
-			checkWord(box[row][selCol],correct);
+		return 1;
+	}
+	
+	private void checkAll()
+	{
+		int vCount=0,hCount=0;
+		for(int row=0;row<totalRows;row++)  
+	    {    
+			for(int col=0;col<totalCols;col++)  
+			{
+				Box pointer = box[row][col];
+				if(pointer.blank) continue;
+				TextView numberView = ((TextView)(pointer.view.findViewById(R.id.number)));
+				if(numberView.getVisibility()==View.VISIBLE){
+					if(row+1<totalRows&&!box[row+1][col].blank){
+						startCell = row;
+						vCount+=checkVword();
+					}
+					if(col+1<totalCols&&!box[row][col+1].blank){
+						startCell = col;
+						hCount+=checkHword();
+					}
+				}
+			}
+	    }
+		try {
+			Thread.sleep(500);//delay
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		Intent i = new Intent(MainActivity.this,GameOverActivity.class);
+		i.putExtra("timeout", true);
+		i.putExtra("v", vNumber.size());
+		i.putExtra("h", hNumber.size());
+		i.putExtra("vCount", vCount);
+		i.putExtra("hCount", hCount);
+		startActivity(i);
+		finish();
 	}
 	
 	private void resetColor(){
@@ -437,6 +500,12 @@ public class MainActivity extends Activity {
 	    	in.read();//read \n
 	    	totalRows=Integer.parseInt(rowS);// convert to integer
 	    	totalCols=Integer.parseInt(colS);// convert to integer
+	    	String time = "";
+	    	while((c=(char) in.read())!='\r'){//total time
+	    		time+=c;
+	    	}
+	    	in.read();//read \n
+	    	endTimer=Integer.parseInt(time);// convert to integer
 	    	box = new Box[totalRows][totalCols];//inisialisasi
 	    	in.read();in.read();//read \r\n
 	    	TableLayout table = (TableLayout)(findViewById(R.id.crosswordLayout));
@@ -526,7 +595,7 @@ public class MainActivity extends Activity {
 			if(selRow>=totalRows||selRow>=totalCols) return true;
 			setWordEntered(box[selRow][selCol],Character.toUpperCase(c));
 			if(boxStatus==Box.HCHECKED){
-				checkHword();
+				//checkHword();
 				if(selCol==endCell){
 					unhighlightBox();
 				}else{
@@ -534,7 +603,7 @@ public class MainActivity extends Activity {
 					highlightBox(selRow,selCol);
 				}
 			}else if(boxStatus==Box.VCHECKED){
-				checkVword();
+				//checkVword();
 				if(selRow==endCell){
 					unhighlightBox();
 				}else{

@@ -30,7 +30,94 @@
         android:textAlignment="center"
         android:textColor="#00FF00"
         android:textSize="30sp" />
-
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp">
+        
+	<TextView
+        android:id="@+id/timeLeftText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sisa Waktu : "
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp" />
+	<TextView
+        android:id="@+id/timeLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" 0 Detik"
+        android:textAlignment="center"
+        android:textColor="#0000FF"
+        android:textSize="20sp" />
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp">
+        
+	<TextView
+        android:id="@+id/mendatarText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mendatar : "
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp" />
+	<TextView
+        android:id="@+id/mendatarBenar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" 11 Benar, "
+        android:textAlignment="center"
+        android:textColor="#00FF00"
+        android:textSize="20sp" />
+	<TextView
+        android:id="@+id/mendatarSalah"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" 0 Salah"
+        android:textAlignment="center"
+        android:textColor="#FF0000"
+        android:textSize="20sp" />
+    </LinearLayout>
+     <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp">
+    <TextView
+        android:id="@+id/menurunText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Menurun : "
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp" />
+	<TextView
+        android:id="@+id/menurunBenar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" 11 Benar, "
+        android:textAlignment="center"
+        android:textColor="#00FF00"
+        android:textSize="20sp" />
+	<TextView
+        android:id="@+id/menurunSalah"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" 0 Salah"
+        android:textAlignment="center"
+        android:textColor="#FF0000"
+        android:textSize="20sp" />
+    </LinearLayout>
     <Button
         android:id="@+id/btnMain"
         android:layout_width="wrap_content"

@@ -2,6 +2,7 @@
 <resources>
 
     <string name="app_name">DNC TTS</string>
+    <string name="menu_back">Pilih TTS</string>
     <string name="menu_horizontal">Mendatar</string>
     <string name="menu_vertical">Menurun</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>

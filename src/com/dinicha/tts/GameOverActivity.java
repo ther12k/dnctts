@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 public class GameOverActivity extends Activity {
 
@@ -31,6 +32,40 @@ public class GameOverActivity extends Activity {
 						finish();
 					}
 				});
+		Intent intent = getIntent();
+		int v = intent.getIntExtra("v",0);
+		int h = intent.getIntExtra("h",0);
+		int vCount = intent.getIntExtra("vCount",0);
+		int hCount = intent.getIntExtra("hCount",0);
+		boolean timeout = intent.getBooleanExtra("timeout", true);
+
+        TextView timerLeftView = (TextView) findViewById(R.id.timeLeft);
+        TextView timerTextView = (TextView) findViewById(R.id.timeLeftText);
+
+        TextView hRightView = (TextView) findViewById(R.id.mendatarBenar);
+        TextView vRightView = (TextView) findViewById(R.id.menurunBenar);
+        TextView hWrongView = (TextView) findViewById(R.id.mendatarSalah);
+        TextView vWrongView = (TextView) findViewById(R.id.menurunSalah);
+		if(timeout){
+			timerTextView.setText("Waktu Habis");
+			timerLeftView.setVisibility(View.GONE);
+		}else{
+			int timeleft = intent.getIntExtra("timeleft",0);
+			int seconds = (int)(timeleft % 60);
+	        int minutes = (int)(timeleft / 60);
+	        if(minutes==0){
+	        	timerLeftView.setText(String.valueOf(timeleft)+" detik");
+	        }else{
+	        	timerLeftView.setText(String.valueOf(minutes)+" menit, "+String.valueOf(seconds)+" detik");
+	        }
+
+	        hWrongView.setText("0 Salah");
+	        vWrongView.setText("0 Salah");
+		}
+        hRightView.setText(String.valueOf(hCount)+" Benar, ");
+        vRightView.setText(String.valueOf(vCount)+" Benar, ");
+        hWrongView.setText(String.valueOf(h-hCount)+" Salah");
+        vWrongView.setText(String.valueOf(v-vCount)+" Salah");
 	}
 
 	@Override
