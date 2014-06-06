@@ -49,6 +49,11 @@ public class GameOverActivity extends Activity {
 		if(timeout){
 			timerTextView.setText("Waktu Habis");
 			timerLeftView.setVisibility(View.GONE);
+
+	        hRightView.setText(String.valueOf(hCount)+" Benar, ");
+	        vRightView.setText(String.valueOf(vCount)+" Benar, ");
+	        hWrongView.setText(String.valueOf(h-hCount)+" Salah");
+	        vWrongView.setText(String.valueOf(v-vCount)+" Salah");
 		}else{
 			int timeleft = intent.getIntExtra("timeleft",0);
 			int seconds = (int)(timeleft % 60);
@@ -59,13 +64,11 @@ public class GameOverActivity extends Activity {
 	        	timerLeftView.setText(String.valueOf(minutes)+" menit, "+String.valueOf(seconds)+" detik");
 	        }
 
+	        hRightView.setText(String.valueOf(h)+" Benar, ");
+	        vRightView.setText(String.valueOf(v)+" Benar, ");
 	        hWrongView.setText("0 Salah");
 	        vWrongView.setText("0 Salah");
 		}
-        hRightView.setText(String.valueOf(hCount)+" Benar, ");
-        vRightView.setText(String.valueOf(vCount)+" Benar, ");
-        hWrongView.setText(String.valueOf(h-hCount)+" Salah");
-        vWrongView.setText(String.valueOf(v-vCount)+" Salah");
 	}
 
 	@Override

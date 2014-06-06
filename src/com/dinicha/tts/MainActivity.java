@@ -173,15 +173,6 @@ public class MainActivity extends Activity {
 		}
 	}//onActivityResult
 	
-	private void checkWord(Box box,boolean correct){
-		TextView wordView = ((TextView)(box.view.findViewById(R.id.guess)));
-		if(correct){
-			wordView.setTextColor(Color.BLACK);
-		}else{
-			wordView.setTextColor(Color.RED);
-		}
-	}
-	
 	private void setWordEntered(Box box,char c){
 		if(box.wordEntered!=c){
 			Log.d("Word Count ",String.valueOf(wrongWordCount));
@@ -259,7 +250,7 @@ public class MainActivity extends Activity {
 	}
 	
 	private int checkHword(){
-		for(int col=startCell;box[selRow][col].blank;col++){
+		for(int col=startCell;col<totalCols&&!box[selRow][col].blank;col++){
 			Box pointer = box[selRow][col];
 			if(pointer.wordBase!=pointer.wordEntered){
 				return 0;
@@ -269,7 +260,7 @@ public class MainActivity extends Activity {
 	}
 	
 	private int checkVword(){
-		for(int row=startCell;box[row][selCol].blank;row++){
+		for(int row=startCell;row<totalRows&&!box[row][selCol].blank;row++){
 			Box pointer = box[row][selCol];
 			if(pointer.wordBase!=pointer.wordEntered){
 				return 0;
@@ -291,10 +282,12 @@ public class MainActivity extends Activity {
 				if(numberView.getVisibility()==View.VISIBLE){
 					if(row+1<totalRows&&!box[row+1][col].blank){
 						startCell = row;
+						selCol = col;
 						vCount+=checkVword();
 					}
 					if(col+1<totalCols&&!box[row][col+1].blank){
 						startCell = col;
+						selRow = row;
 						hCount+=checkHword();
 					}
 				}
