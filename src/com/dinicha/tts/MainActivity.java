@@ -62,6 +62,7 @@ public class MainActivity extends Activity {
 	private HorizontalScrollView scrollRight;
 	private int wrongWordCount = 0;
 	private long endTimer = 600;
+	private boolean gameover = false;
     TextView timerTextView;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +88,7 @@ public class MainActivity extends Activity {
 
         @Override
         public void run() {
-        	if(endTimer>0){
+        	if(endTimer>0&&!gameover){
 	        	endTimer--;
 	            int seconds = (int)(endTimer % 60);
 	            int minutes = (int)(endTimer / 60);
@@ -181,6 +182,7 @@ public class MainActivity extends Activity {
 				wrongWordCount--;
 
 			if(wrongWordCount==0){
+				gameover = true;
 				try {
 					Thread.sleep(500);
 				} catch (InterruptedException e) {
