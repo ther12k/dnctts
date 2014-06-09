@@ -10,9 +10,11 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Color;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -20,6 +22,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.SoundEffectConstants;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.view.WindowManager;
@@ -64,6 +67,7 @@ public class MainActivity extends Activity {
 	private long endTimer = 600;
 	private boolean gameover = false;
     TextView timerTextView;
+    AudioManager audioManager;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -80,6 +84,7 @@ public class MainActivity extends Activity {
 		scrollRight = (HorizontalScrollView) findViewById(R.id.scrollRight);
 		alert = new AlertDialog.Builder(this);
         timerTextView = (TextView) findViewById(R.id.timerView);
+        audioManager = (AudioManager) this.getSystemService(Context.AUDIO_SERVICE);
         timerHandler.postDelayed(timerRunnable, 0);
 	}
 	
@@ -94,7 +99,9 @@ public class MainActivity extends Activity {
 	            int minutes = (int)(endTimer / 60);
 	
 	            timerTextView.setText(String.format("%d:%02d", minutes, seconds));
-	
+	            if(seconds<10){
+	            	audioManager.playSoundEffect(SoundEffectConstants.CLICK);   
+	            }
 	            timerHandler.postDelayed(this, 1000);
         	}else{
         		if(!gameover)
@@ -178,9 +185,12 @@ public class MainActivity extends Activity {
 	private void setWordEntered(Box box,char c){
 		if(box.wordEntered!=c){
 			Log.d("Word Count ",String.valueOf(wrongWordCount));
-			box.wordEntered = c;
-			if(box.wordBase==box.wordEntered)//correct
+			
+			if(box.wordBase==c)//correct
 				wrongWordCount--;
+			else if(box.wordEntered!=' ')
+				wrongWordCount++;
+			box.wordEntered = c;
 
 			if(wrongWordCount==0){
 				gameover = true;
@@ -253,8 +263,9 @@ public class MainActivity extends Activity {
 	}
 	
 	private int checkHword(){
-		for(int col=startCell;col<totalCols&&!box[selRow][col].blank;col++){
+		for(int col=startCell;col<totalCols;col++){
 			Box pointer = box[selRow][col];
+			if(pointer.blank) return 1;
 			if(pointer.wordBase!=pointer.wordEntered){
 				return 0;
 			}
@@ -263,8 +274,9 @@ public class MainActivity extends Activity {
 	}
 	
 	private int checkVword(){
-		for(int row=startCell;row<totalRows&&!box[row][selCol].blank;row++){
+		for(int row=startCell;row<totalRows;row++){
 			Box pointer = box[row][selCol];
+			if(pointer.blank) return 1;
 			if(pointer.wordBase!=pointer.wordEntered){
 				return 0;
 			}
