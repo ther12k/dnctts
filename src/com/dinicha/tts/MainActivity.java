@@ -97,6 +97,7 @@ public class MainActivity extends Activity {
 	
 	            timerHandler.postDelayed(this, 1000);
         	}else{
+        		if(!gameover)
         		checkAll();
         	}
         }

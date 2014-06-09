@@ -55,7 +55,7 @@ public class GameOverActivity extends Activity {
 	        hWrongView.setText(String.valueOf(h-hCount)+" Salah");
 	        vWrongView.setText(String.valueOf(v-vCount)+" Salah");
 		}else{
-			int timeleft = intent.getIntExtra("timeleft",0);
+			long timeleft = intent.getLongExtra("timeleft",0);
 			int seconds = (int)(timeleft % 60);
 	        int minutes = (int)(timeleft / 60);
 	        if(minutes==0){
