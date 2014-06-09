@@ -293,18 +293,29 @@ public class MainActivity extends Activity {
 			{
 				Box pointer = box[row][col];
 				if(pointer.blank) continue;
-				TextView numberView = ((TextView)(pointer.view.findViewById(R.id.number)));
-				if(numberView.getVisibility()==View.VISIBLE){
-					if(row+1<totalRows&&!box[row+1][col].blank){
-						startCell = row;
-						selCol = col;
-						vCount+=checkVword();
-					}
-					if(col+1<totalCols&&!box[row][col+1].blank){
-						startCell = col;
-						selRow = row;
-						hCount+=checkHword();
-					}
+				boolean left=false,top=false,bottom=false,right=false;
+				if(col>0&&!box[row][col-1].blank){
+					left=true;//has left box
+				}
+				if(col+1<totalCols&&!box[row][col+1].blank){
+					right=true;//has right box
+				}
+				if(row>0&&!box[row-1][col].blank){
+					top=true;//has top box
+				}
+				if(row+1<totalRows&&!box[row+1][col].blank){
+					bottom=true;//has bottom box
+				}
+				
+				if(!left&&right){//horizontal
+					startCell = col;
+					selRow = row;
+					hCount+=checkHword();
+				}
+				if(!top&&bottom){//down
+					startCell = row;
+					selCol = col;
+					vCount+=checkVword();
 				}
 			}
 	    }
